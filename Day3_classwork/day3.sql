@@ -52,3 +52,29 @@ TITLE LIKE '%in%';
 +-------------------+-------------+----------------+------------+
 2 rows in set (0.00 sec)
 
+-- Question 3 - get a list of books published between 
+-- 1971 and 2000 inclusive and order the results by 
+-- the title in reverse alphabetic order 
+
+SELECT 
+title,
+author,
+year_published,
+genre 
+FROM 
+catalog
+WHERE 
+1971 <= year_published AND year_published <= 2000
+ORDER BY title DESC;
+
++------------------+-----------------+----------------+----------+
+| title            | author          | year_published | genre    |
++------------------+-----------------+----------------+----------+
+| Not a Penny More | Daniel Chambers |           1980 | Politics |
+| Dune             | Frank Herbert   |           1975 | SF       |
+| Carrie           | Stephen King    |           1975 | Horror   |
+| Carpet Baggers   | Lee Sheldon     |           1977 | Drama    |
++------------------+-----------------+----------------+----------+
+4 rows in set (0.00 sec)
+
+
