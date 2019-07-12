@@ -91,3 +91,24 @@ catalog;
 |           9 |
 +-------------+
 1 row in set (0.00 sec)
+
+-- Question 5 - get a list of books where the author name 
+-- ends in King or Chambers 
+
+SELECT 
+title,
+author,
+year_published,
+genre 
+FROM 
+catalog 
+WHERE author like '%King' OR author like '%Chambers';
+
++------------------+-----------------+----------------+----------+
+| title            | author          | year_published | genre    |
++------------------+-----------------+----------------+----------+
+| Under the Dome   | Stephen King    |           2010 | Horror   |
+| Not a Penny More | Daniel Chambers |           1980 | Politics |
+| Carrie           | Stephen King    |           1975 | Horror   |
++------------------+-----------------+----------------+----------+
+3 rows in set (0.00 sec)
