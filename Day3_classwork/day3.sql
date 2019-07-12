@@ -15,16 +15,40 @@ FROM
 catalog
 ORDER BY year_published DESC;
 
-+---------------------+----------------+----------------+----------+
-| title               | author         | year_published | genre    |
-+---------------------+----------------+----------------+----------+
-| Marching Frogs      | Tommy Tunes    |           2005 | Children |
-| Children of Dune    | Frank Herbert  |           1999 | SF       |
-| Island              | Richard Laymon |           1993 | Horror   |
-| Gateway             | Frederick Phol |           1978 | SF       |
-| Dune                | Frank Herbert  |           1975 | SF       |
-| Dune Messiah        | Frank Herbert  |           1975 | SF       |
-| Black Ice           | Frank Herbert  |           1975 | SF       |
-| Not a penny anymore | Tom Archer     |           1973 | Politics |
-+---------------------+----------------+----------------+----------+
-8 rows in set (0.00 sec)
++-------------------+------------------+----------------+------------+
+| title             | author           | year_published | genre      |
++-------------------+------------------+----------------+------------+
+| A Day in the Life | Carmen Ynez      |           2012 | Literature |
+| Under the Dome    | Stephen King     |           2010 | Horror     |
+| The Oath          | John Lescroart   |           2008 | Legal      |
+| Flash Forward     | Robert J. Sawyer |           2006 | SF         |
+| Island            | Richard Laymon   |           2002 | Horror     |
+| A Mixed Blessing  | Sally Unger      |           2002 | Politics   |
+| Not a Penny More  | Daniel Chambers  |           1980 | Politics   |
+| Carpet Baggers    | Lee Sheldon      |           1977 | Drama      |
+| Dune              | Frank Herbert    |           1975 | SF         |
+| Carrie            | Stephen King     |           1975 | Horror     |
++-------------------+------------------+----------------+------------+
+10 rows in set (0.00 sec)
+
+-- Question 2 -- get a list of books in which the letters 
+-- 'in' appear somewhere in the title 
+
+SELECT 
+title,
+author,
+year_published,
+genre 
+FROM 
+catalog 
+WHERE 
+TITLE LIKE '%in%';
+
++-------------------+-------------+----------------+------------+
+| title             | author      | year_published | genre      |
++-------------------+-------------+----------------+------------+
+| A Day in the Life | Carmen Ynez |           2012 | Literature |
+| A Mixed Blessing  | Sally Unger |           2002 | Politics   |
++-------------------+-------------+----------------+------------+
+2 rows in set (0.00 sec)
+
