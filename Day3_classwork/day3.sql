@@ -77,4 +77,17 @@ ORDER BY title DESC;
 +------------------+-----------------+----------------+----------+
 4 rows in set (0.00 sec)
 
+-- Question 4 - get the number of authors in the table 
+-- in a field caled num_authors
 
+SELECT 
+COUNT(DISTINCT author) as num_authors
+FROM
+catalog;
+
++-------------+
+| num_authors |
++-------------+
+|           9 |
++-------------+
+1 row in set (0.00 sec)
