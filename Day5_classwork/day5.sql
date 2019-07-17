@@ -78,4 +78,55 @@ JOIN publisher USING (publisher_id)
 GROUP BY publisher
 HAVING num_books < 4;
 
---
+-- show author who have more than 1 book in our database 
+-- result (author, num_books)
+
+SELECT 
+author.name as author,
+count(book.title) as num_books
+FROM 
+book
+JOIN author USING (author_id)
+GROUP BY author.name
+HAVING num_books > 1;
+
+-- show all authors and a count of their books, but also show authors who have no books
+
+RIGHT OUTER 
+LEFT OUTER 
+
+SELECT 
+author.name as author,
+count(book.title) as num_books
+FROM 
+book
+RIGHT OUTER JOIN author USING (author_id)
+GROUP BY author.name;
+
+-- show all books and yourself as the author 
+-- result(title, author)
+
+
+SELECT 
+book.title as title,
+'Narain' as Author
+FROM 
+book;
+
+-- Add a new book to the book table with the following information: 
+
+title is 'A Day in the Sun'
+Number of Pages is 325 
+Year published is 2015 
+Price is 20 dollars
+Book is in print 
+A line of lorem ipsum for the description
+Genre is literature 
+Author is Stephen King 
+Publisher is Ballantine 
+Format is Paper
+
+INSERT INTO 
+book(title,num_pages,year_published,price,in_print,description,genre_id,author_id,publisher_id,format_id)
+values
+("A Day in the Sun",325,2015,20.00,1,"Lorem Ipsum",3,4,1,1);
