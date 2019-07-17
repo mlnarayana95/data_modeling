@@ -130,3 +130,74 @@ INSERT INTO
 book(title,num_pages,year_published,price,in_print,description,genre_id,author_id,publisher_id,format_id)
 values
 ("A Day in the Sun",325,2015,20.00,1,"Lorem Ipsum",3,4,1,1);
+
+
+-- Update books set in_print to false if the publisher is Daw
+
+UPDATE book
+SET in_print = false
+WHERE publisher_id = (select publisher_id from publisher where name = 'Daw');
+
+-- Rename the name field to genre 
+
+ALTER TABLE genre 
+CHANGE name genre VARCHAR(255);
+
+-- VIEWS
+-- Views are virtual tables. We can compose a view by querying and or joining one or more other tables. 
+-- It result of the query becomes a virtual table we can then use. 
+
+CREATE VIEW catalog
+AS 
+SELECT 
+book.book_id, book.title, 
+author.name as author,
+genre.genre as genre,
+format.name as format,
+publisher.name as publisher,
+book.price 
+FROM 
+book
+JOIN author USING(author_id)
+JOIN genre USING(genre_id)
+JOIN format USING(format_id)
+JOIN publisher USING(publisher_id);
+
+-- The view is linked to its base tables 
+-- Any changes to the base tables, will be reflected 
+-- in the view 
+
+
+-- Updates to the view, will impact the base tables...
+-- not always intuitively
+
+-- Try updating the author of the book with the id of 1 to 
+-- 'Big Bird' in the view 
+
+UPDATE catalog 
+SET title = 'Big Bird' where book_id = "1";
+
+-- Another kind of virtual table in MySQL in the temporary table 
+-- Only available for the session
+
+CREATE TEMPORARY TABLE titles
+AS 
+SELECT title from book;
+
+-- TRANSACTIONS
+-- MySQL transaction allows you to execute a set of MySQL operations to ensure that the database never contains the
+-- result of partial operations.
+-- In a set of operations, if one of them fails, the rollback occurs to restore the database to its original state.
+-- Commit/ Rollback is what the outcome would be
+-- A - Atomicity -- all or nothing 
+-- C - Consistency -- valid before and after
+-- I - Isolation (Every transaction has to happen in isolation) -- isolated from rest of DB
+-- D - Durability (Has to be saved into a medium that is stable) -- saved to a durable medium
+
+START TRANSACTION -- BEGIN
+  UPDATE author SET name = 'Binky Bink'
+  WHERE author_id = 1; 
+ -- OR ROLLBACk
+
+
+
